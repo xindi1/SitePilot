@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'sitepilot-commercial-v1-1-opportunities';
+const STORAGE_KEY = 'sitepilot-commercial-v1-2-opportunities';
 const navButtons = document.querySelectorAll('.nav-btn');
 const views = document.querySelectorAll('.view');
 let lastAssessment = null;
@@ -44,7 +44,7 @@ function buildSummary(result = lastAssessment) {
 }
 function saveOpportunity(result) {
   const rev = Number(val('estimatedRevenue') || 0);
-  const rec = { id: Date.now(), customerName: val('customerName') || 'Unnamed customer', companyName: val('companyName') || 'Unnamed site', opportunityType: val('opportunityType'), source: val('source'), score: result.score, tier: result.tier, recommendation: result.action, value: rev, status: result.score >= 78 ? 'Qualified' : 'New', createdAt: new Date().toLocaleString() };
+  const rec = { id: Date.now(), customerName: val('customerName') || 'Unnamed customer', companyName: val('companyName') || val('siteLocation') || 'Unnamed site', location: val('siteLocation'), opportunityType: val('opportunityType'), source: val('source'), score: result.score, tier: result.tier, recommendation: result.action, value: rev, status: result.score >= 78 ? 'Qualified' : 'New', createdAt: new Date().toLocaleString() };
   setRecords([rec, ...records()]); renderAll();
 }
 document.getElementById('runBtn').addEventListener('click', () => { lastAssessment = scoreAssessment(); document.getElementById('summaryOutput').innerHTML = buildSummary(lastAssessment); saveOpportunity(lastAssessment); switchView('handoff'); });
@@ -61,7 +61,7 @@ document.getElementById('calcSnapshotBtn').addEventListener('click', () => {
 });
 
 document.getElementById('copySummaryBtn').addEventListener('click', async () => {
-  const txt = ['SitePilot Field Handoff', `Customer: ${val('customerName') || 'Not entered'}`, `Site: ${val('companyName') || 'Not entered'}`, `Opportunity type: ${val('opportunityType')}`, lastAssessment ? `Site Readiness Score: ${lastAssessment.score}/100` : 'No score yet', lastAssessment ? `Priority: ${lastAssessment.tier}` : '', lastAssessment ? `Action: ${lastAssessment.action}` : ''].filter(Boolean).join('\n');
+  const txt = ['SitePilot Field Handoff', `Customer: ${val('customerName') || 'Not entered'}`, `Site: ${val('siteLocation') || val('companyName') || 'Not entered'}`, `Opportunity type: ${val('opportunityType')}`, lastAssessment ? `Site Readiness Score: ${lastAssessment.score}/100` : 'No score yet', lastAssessment ? `Priority: ${lastAssessment.tier}` : '', lastAssessment ? `Action: ${lastAssessment.action}` : ''].filter(Boolean).join('\n');
   try { await navigator.clipboard.writeText(txt); const b=document.getElementById('copySummaryBtn'); const o=b.textContent; b.textContent='Copied'; setTimeout(()=>b.textContent=o,1200); } catch { alert('Copy failed on this device/browser.'); }
 });
 
@@ -73,3 +73,6 @@ function renderDashboard(){ const rs = records(); const total=rs.length, qualifi
 function renderAll(){ renderPipeline(); renderDashboard(); }
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js'));
 renderAll(); switchView('dashboard');
+
+
+document.querySelectorAll('[data-goto]').forEach(btn => btn.addEventListener('click', () => switchView(btn.dataset.goto)));
