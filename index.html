@@ -12,182 +12,112 @@
 <body>
   <div class="app-shell">
     <header class="app-header">
-      <div class="brand-row">
-        <div>
-          <div class="brand">SITEPILOT™</div>
-          <h1>Field Qualification Platform</h1>
-          <p class="subtitle">Capture • Qualify • Handoff</p>
-        </div>
-        <div class="bolt-mark" aria-hidden="true">⚡</div>
+      <div class="hero-copy">
+        <div class="brand">SITEPILOT™</div>
+        <h1>Field Qualification Platform</h1>
+        <p class="subtitle">Capture • Qualify • Handoff</p>
       </div>
-      <div class="metric-strip" id="topMetrics">
-        <div><strong>0</strong><span>Pipeline</span></div>
-        <div><strong>$0</strong><span>Value</span></div>
-        <div><strong>—</strong><span>Avg score</span></div>
-      </div>
+      <img class="hero-icon" src="icon-192.png" alt="SitePilot icon" />
     </header>
 
     <main class="phone-frame">
+      <section class="metric-row" aria-label="Quick metrics">
+        <div class="metric-card"><strong id="topPipelineCount">0</strong><span>Pipeline opportunities</span></div>
+        <div class="metric-card"><strong id="topPipelineValue">$0</strong><span>Pipeline value</span></div>
+        <div class="metric-card"><strong id="topAvgScore">—</strong><span>Average score</span></div>
+      </section>
+
       <section id="view-intake" class="view active" aria-labelledby="tab-intake">
-        <section class="card hero-card">
+        <section class="card">
           <h2>Opportunity Intake</h2>
-          <p class="sub">Capture the field details every service business needs before scheduling, quoting, or handing off.</p>
-
-          <label for="customerName">Customer / Site</label>
-          <input id="customerName" type="text" placeholder="Name, company, or address" />
-
-          <label for="companyName">Company / Account</label>
-          <input id="companyName" type="text" placeholder="Optional" />
-
-          <label for="propertyType">Property type</label>
-          <select id="propertyType">
-            <option>Residential</option>
-            <option>Commercial</option>
-            <option>Multi-site</option>
-            <option>Industrial</option>
-          </select>
-
+          <p class="sub">Capture the core field details before scoring the opportunity.</p>
+          <label for="customerName">Customer name</label>
+          <input id="customerName" type="text" placeholder="Name" />
+          <label for="companyName">Company / site</label>
+          <input id="companyName" type="text" placeholder="Company, site, or address" />
           <label for="opportunityType">Opportunity type</label>
           <select id="opportunityType">
-            <option>Electrical</option>
-            <option>Solar</option>
-            <option>HVAC</option>
-            <option>Roofing</option>
-            <option>Plumbing</option>
-            <option>General Contracting</option>
-            <option>Other</option>
+            <option>Electrical</option><option>Solar</option><option>HVAC</option><option>Roofing</option><option>Plumbing</option><option>General Contracting</option><option>Other</option>
           </select>
-
-          <label for="source">Lead source</label>
-          <select id="source">
-            <option>Referral</option>
-            <option>Website</option>
-            <option>Inbound call</option>
-            <option>Field visit</option>
-            <option>Partner</option>
-            <option>Other</option>
-          </select>
+          <label for="source">Source</label>
+          <select id="source"><option>Referral</option><option>Website</option><option>Inbound call</option><option>Field visit</option><option>Partner</option><option>Other</option></select>
         </section>
       </section>
 
       <section id="view-assess" class="view" aria-labelledby="tab-assess">
         <section class="card">
           <h2>Readiness Engine™</h2>
-          <p class="sub">Score customer urgency, site complexity, revenue potential, access, and constraints.</p>
-
+          <p class="sub">Score customer readiness, site complexity, value, access, and constraints.</p>
           <label for="timeline">Customer readiness</label>
-          <select id="timeline">
-            <option>Ready now</option>
-            <option>30 days</option>
-            <option>90 days</option>
-            <option>Researching</option>
-          </select>
-
-          <label for="complexity">Site complexity</label>
-          <select id="complexity">
-            <option>Low</option>
-            <option>Moderate</option>
-            <option>High</option>
-          </select>
-
-          <label for="revenueBand">Revenue potential</label>
-          <select id="revenueBand">
-            <option>&lt;$1,000</option>
-            <option>$1k–$5k</option>
-            <option>$5k–$25k</option>
-            <option>$25k+</option>
-          </select>
-
-          <label for="access">Site access</label>
-          <select id="access">
-            <option>Easy</option>
-            <option>Moderate</option>
-            <option>Difficult</option>
-          </select>
-
-          <label for="constraints">Known constraints</label>
-          <select id="constraints">
-            <option>None</option>
-            <option>Some</option>
-            <option>Major</option>
-          </select>
-
-          <label for="notes">Field notes</label>
-          <textarea id="notes" placeholder="Constraints, next steps, customer context, site details"></textarea>
+          <select id="timeline"><option>Ready now</option><option>30 days</option><option>90 days</option><option>Researching</option></select>
+          <label for="siteComplexity">Site complexity</label>
+          <select id="siteComplexity"><option>Low</option><option>Moderate</option><option>High</option></select>
+          <label for="revenuePotential">Revenue potential</label>
+          <select id="revenuePotential"><option>&lt;$1,000</option><option>$1k–$5k</option><option>$5k–$25k</option><option>$25k+</option></select>
+          <label for="access">Access</label>
+          <select id="access"><option>Easy</option><option>Moderate</option><option>Difficult</option></select>
+          <label for="constraints">Constraints</label>
+          <select id="constraints"><option>None</option><option>Some</option><option>Major</option></select>
+          <button id="runBtn" class="cta" type="button">Run Site Readiness Score™</button>
         </section>
-        <button id="runBtn" class="cta" type="button">Run Site Readiness Score™</button>
       </section>
 
       <section id="view-snapshot" class="view" aria-labelledby="tab-snapshot">
         <section class="card">
           <h2>Proposal Snapshot</h2>
-          <p class="sub">Directional business math for prioritizing follow-up, not a formal quote.</p>
-
+          <p class="sub">Estimate value, margin, win probability, and expected value.</p>
           <label for="estimatedRevenue">Estimated revenue ($)</label>
           <input id="estimatedRevenue" type="number" inputmode="decimal" placeholder="12000" />
-
           <label for="estimatedCost">Estimated cost ($)</label>
-          <input id="estimatedCost" type="number" inputmode="decimal" placeholder="7500" />
-
+          <input id="estimatedCost" type="number" inputmode="decimal" placeholder="7200" />
           <label for="winProbability">Proposal probability (%)</label>
-          <input id="winProbability" type="number" inputmode="numeric" placeholder="65" />
-
-          <button id="calcProposalBtn" class="secondary-btn" type="button">Calculate snapshot</button>
-          <div id="proposalOutput" class="result-stack hidden"></div>
+          <input id="winProbability" type="number" inputmode="decimal" placeholder="65" />
+          <button id="calcSnapshotBtn" class="secondary-btn" type="button">Calculate snapshot</button>
+          <div id="snapshotOutput" class="result-stack hidden"></div>
         </section>
       </section>
 
       <section id="view-handoff" class="view" aria-labelledby="tab-handoff">
         <section class="card">
-          <h2>Office Handoff</h2>
-          <p class="sub">A clean internal summary for sales, estimating, dispatch, or ownership.</p>
-          <div id="summaryOutput" class="result-stack">
-            <div class="empty-state">Run an assessment to generate a handoff.</div>
-          </div>
+          <h2>Handoff</h2>
+          <p class="sub">Copy a clean office-ready summary for the next step.</p>
+          <div id="summaryOutput" class="result-stack"><div class="empty-state">Run an assessment to generate a handoff.</div></div>
           <button id="copySummaryBtn" class="secondary-btn" type="button">Copy handoff</button>
         </section>
       </section>
 
       <section id="view-pipeline" class="view" aria-labelledby="tab-pipeline">
         <section class="card">
-          <div class="section-head">
-            <div>
-              <h2>Pipeline</h2>
-              <p class="sub">Stored locally on this device.</p>
-            </div>
-            <button id="clearSavedBtn" class="ghost-btn" type="button">Clear all</button>
-          </div>
-          <div class="status-filter">
-            <button class="filter-btn active" data-filter="All" type="button">All</button>
-            <button class="filter-btn" data-filter="Qualified" type="button">Qualified</button>
-            <button class="filter-btn" data-filter="Proposal Sent" type="button">Proposal</button>
-            <button class="filter-btn" data-filter="Won" type="button">Won</button>
-          </div>
-          <div id="savedList" class="saved-list">
-            <div class="empty-state">No opportunities yet.</div>
-          </div>
+          <div class="section-head"><div><h2>Pipeline</h2><p class="sub">Saved locally on this device.</p></div><button id="clearSavedBtn" class="ghost-btn" type="button">Clear</button></div>
+          <div id="savedList" class="saved-list"><div class="empty-state">No saved opportunities yet.</div></div>
         </section>
       </section>
 
       <section id="view-dashboard" class="view" aria-labelledby="tab-dashboard">
-        <section class="card">
+        <section class="card dashboard-card">
           <h2>Executive Dashboard</h2>
           <p class="sub">A lightweight operating view for owners and managers.</p>
-          <div id="dashboardOutput" class="dashboard-grid"></div>
+          <div class="dash-grid">
+            <div class="dash-tile"><span>Total opportunities</span><strong id="dashTotal">0</strong><i>👥</i></div>
+            <div class="dash-tile"><span>Qualified pipeline</span><strong id="dashQualified">0</strong><i>☑</i></div>
+            <div class="dash-tile"><span>Average readiness</span><strong id="dashAvg">—</strong><i>↗</i></div>
+            <div class="dash-tile"><span>Pipeline value</span><strong id="dashPipelineValue">$0</strong><i>$</i></div>
+            <div class="dash-tile"><span>Won value</span><strong id="dashWonValue">$0</strong><i>🏆</i></div>
+            <div class="dash-tile"><span>Win count</span><strong id="dashWonCount">0</strong><i>▥</i></div>
+          </div>
         </section>
       </section>
     </main>
 
     <nav class="bottom-nav" aria-label="Primary">
-      <button id="tab-intake" class="nav-btn active" data-view="intake" type="button"><span>Intake</span></button>
-      <button id="tab-assess" class="nav-btn" data-view="assess" type="button"><span>Assess</span></button>
-      <button id="tab-snapshot" class="nav-btn" data-view="snapshot" type="button"><span>Snapshot</span></button>
-      <button id="tab-handoff" class="nav-btn" data-view="handoff" type="button"><span>Handoff</span></button>
-      <button id="tab-pipeline" class="nav-btn" data-view="pipeline" type="button"><span>Pipeline</span></button>
-      <button id="tab-dashboard" class="nav-btn" data-view="dashboard" type="button"><span>Dashboard</span></button>
+      <button id="tab-intake" class="nav-btn active" data-view="intake" type="button"><span class="nav-icon">👤</span><span>Intake</span></button>
+      <button id="tab-assess" class="nav-btn" data-view="assess" type="button"><span class="nav-icon">▣</span><span>Assess</span></button>
+      <button id="tab-snapshot" class="nav-btn" data-view="snapshot" type="button"><span class="nav-icon">●</span><span>Snapshot</span></button>
+      <button id="tab-handoff" class="nav-btn" data-view="handoff" type="button"><span class="nav-icon">➤</span><span>Handoff</span></button>
+      <button id="tab-pipeline" class="nav-btn" data-view="pipeline" type="button"><span class="nav-icon">▥</span><span>Pipeline</span></button>
+      <button id="tab-dashboard" class="nav-btn" data-view="dashboard" type="button"><span class="nav-icon">◔</span><span>Dashboard</span></button>
     </nav>
   </div>
-
   <script src="app.js"></script>
 </body>
 </html>
